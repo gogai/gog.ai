@@ -1,0 +1,76 @@
+@{layout('')}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>@{config.name} v@{config.version}</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=10" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="robots" content="all,follow" />
+	@{head}
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,700&subset=latin,latin-ext" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.20.2/codemirror.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
+	@{import('default.css', 'default.js', 'favicon.ico')}
+</head>
+<body data-jc="exec,binder" style="background-color: #425FA3;">
+  <div data-jc="loading" class="ui-loading"></div>
+	<div class="ui-center" style="color: white;">
+		<!-- <h2 style="color: white; margin-top: 50px; text-align: height: 100px; line-height: 100px; font-size: 56px; padding: 10px;"><i>신들의정원</i></h2> -->
+    <img src="img/title2.png" style="width: 200px; height: auto; margin-top: 50px;"/>
+    <!-- <img src="img/title2.png" style="width: 200px; height: auto; margin-top: 50px;"/> -->
+    <p style="font-size: 16px;"> 그룹과 그룹의 네트워킹 그속에 보석같은 진리 </p>
+	</div>
+	<br />
+	<br />
+	<div class="container login">
+		<div class="col-md-4 col-md-offset-4 enter">
+			<div data-jc="textbox" data-jc-path="user.email" class="m" data-maxlength="120" data-required="true" data-placeholder="@(email)" data-autofocus="true" data-jc-type="email">이메일</div>
+			<div data-jc="textbox" data-jc-path="user.password" data-jc-type="password" data-required="true" class="m" data-maxlength="30" data-placeholder="@(password)">비밀번호</div>
+			<div data-jc="error" data-jc-path="user.response"></div>
+			<div data-jc="validation" data-jc-path="user">
+				<button class="button button-small b" data-jc="click" data-jc-path="doLogin" data-enter=".enter"><span class="fa fa-lock"></span> 로그인</button>
+			</div>
+      <div class="pull-right">
+        <p><strong data-jc="click" data-jc-path="users_new" style="margin-right:2px; color: white;">회원가입</strong></p>
+      </div>
+
+		</div>
+	</div>
+
+  <div data-jc="importer" data-jc-path="common.form" data-if="value === 'formuser'" data-url="/forms/formsignup.html" data-reload="formuser_reload"></div>
+
+	<script>
+		var user = {};
+
+    MAKE('current', function() {
+			this.route = {};
+			this.online = 0;
+			!this.users && (this.users = EMPTYARRAY);
+			!this.channels && (this.channels = EMPTYARRAY);
+			this.ready = false;
+		});
+
+    SETTER(true, 'loading', 'hide', 500);
+
+    function doLogin() {
+      RESET('user.*');
+			AJAX('POST /api/login/', user, function(response) {
+
+        SET('user.response', response);
+				response.success && location.reload(true);
+			});
+		}
+
+    function users_new() {
+      SET('formuser', { channels: [], email: '', picture: 'face', notifications: true }, true);
+  		SET('common.form', 'formuser');
+    }
+	</script>
+
+</body>
+</html>
