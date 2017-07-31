@@ -63,16 +63,15 @@ exports.install = function(instance) {
 
 		var client = response.get('client');
 		if (!instance.options.location) {
-//			if (!client || (instance.options.from === '$target' && client.threadtype === 'channel') || (instance.options.from !== '$sender' && instance.options.from !== '$target' && client.threadtype === 'user' && client.threadid !== instance.options.from))
-			if (!client || (instance.options.from === '$target' && client.threadtype === 'channel'))
+			if (!client || (instance.options.from === '$target' && client.threadtype === 'channel') || (instance.options.from !== '$sender' && instance.options.from !== '$target' && client.threadtype === 'user' && client.threadid !== instance.options.from))
 				return;
 		}
 
 		MESSAGE.idtarget = instance.options.location ? instance.options.location : instance.options.from === '$target' ? client.user.id : client.threadid;
 		MESSAGE.target = instance.options.location ? 'channel' : client.threadtype;
 		MESSAGE.iduser = instance.options.from === '$sender' ? client.user.id : instance.options.from === '$target' ? client.threadid : instance.options.from;
+
 		MESSAGE.body = typeof(data) === 'object' ? ('```json\n' + JSON.stringify(data, null, '    ') + '\n```') : data.toString();
-		MESSAGE.idto = MESSAGE.target !== 'channel' && !instance.options.location ? client.user.id : null;
 		OPERATION('send', MESSAGE, NOOP);
 	});
 
