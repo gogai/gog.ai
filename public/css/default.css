@@ -49,7 +49,7 @@ body { background-color: white; padding: 0; color: gray; font-smoothing: antiali
 .mainmenu { position: absolute; }
 .monospace { font-family: Menlo, Monaco, monospace; }
 
-.caption { font-size: 12px; font-weight: bold; color: silver; text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.caption { font-size: 16px; font-weight: bold; color: silver; text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .caption .operation { float: right; margin: -3px 0 0 7px; font-size: 14px; cursor: pointer; opacity: .4; font-size: 15px; }
 .caption .operation:first-child { margin-right: 21px; font-size: 14px; }
 .caption .operation:hover { opacity: 1; }

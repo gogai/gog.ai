@@ -61,14 +61,66 @@
 		<hr class="nmt nmb" />
 		<div id="panel">
 			<div data-jc="search" data-jc-path="panel.search" data-selector=".jsearch">
-				<div class="caption jsearch" data-search=""><div class="operation exec" data-path="common.form" data-value="'formblacklist'"><i class="fa fa-rss-square"></i></div>@{if user.sa}<div class="operation exec" data-path="common.form" data-value="'formchannel'"><i class="fa fa-plus-square-o"></i></div>@{fi}@(Channels)</div>
-				<nav data-jc="repeater" data-jc-path="current.channels" class="nav-channels">
-					<script type="text/html">
+				<div class="caption jsearch" data-search="">
+          @{if user.sa}
+          <div class="operation exec" data-path="common.form" data-value="'formchannel'">
+            <i class="fa fa-plus-square-o"></i>
+          </div>
+          @{fi}
+          @(전체보기)
+        </div>
+        <nav class="nav-channels">
+          <a href="/channels/1ta1a03vuo/" class="jrouting jsearch channel-panel" data-id="{{ id }}" data-search="{{ name }}"><i class="fa fa-hashtag"></i>전체 공지방</a>
+				</nav>
+        <nav class="nav-channels">
+          <a href="/channels/xn416nqyc3/" class="jrouting jsearch channel-panel" data-id="{{ id }}" data-search="{{ name }}"><i class="fa fa-hashtag"></i>전체 소통방</a>
+				</nav>
+
+
+
+        <div class="caption jsearch" data-search="">
+          @(엑세스바즈)
+        </div>
+        <nav class="nav-channels">
+          <a href="/channels/kef3e913bt/" class="jrouting jsearch channel-panel" data-id="{{ id }}" data-search="{{ name }}"><i class="fa fa-hashtag"></i>컨텐츠방</a>
+				</nav>
+        <nav class="nav-channels">
+          <a href="/channels/t4fqgaoy4j/" class="jrouting jsearch channel-panel" data-id="{{ id }}" data-search="{{ name }}"><i class="fa fa-hashtag"></i>질문방</a>
+				</nav>
+        <nav class="nav-channels">
+          <a href="/channels/8qxd1yjuqj/" class="jrouting jsearch channel-panel" data-id="{{ id }}" data-search="{{ name }}"><i class="fa fa-hashtag"></i>활동방</a>
+				</nav>
+
+        <div class="caption jsearch" data-search="">
+          @(신과나눈이야기)
+        </div>
+        <nav class="nav-channels">
+          <a href="/channels/5bt14i9d6h/" class="jrouting jsearch channel-panel" data-id="{{ id }}" data-search="{{ name }}"><i class="fa fa-hashtag"></i>컨텐츠방</a>
+				</nav>
+        <nav class="nav-channels">
+          <a href="/channels/f8e9mbozle/" class="jrouting jsearch channel-panel" data-id="{{ id }}" data-search="{{ name }}"><i class="fa fa-hashtag"></i>질문방</a>
+				</nav>
+        <nav class="nav-channels">
+          <a href="/channels/184t11jtaf/" class="jrouting jsearch channel-panel" data-id="{{ id }}" data-search="{{ name }}"><i class="fa fa-hashtag"></i>활동방</a>
+				</nav>
+
+        @{if user.sa }
+        <div class="caption jsearch" data-search="">
+          @{if user.sa}
+          <div class="operation exec" data-path="common.form" data-value="'formchannel'">
+            <i class="fa fa-plus-square-o"></i>
+          </div>
+          @{fi}
+          @(생성된 방목록)
+        </div>
+        <nav data-jc="repeater" data-jc-path="current.channels" class="nav-channels">
+          <script type="text/html">
 						{{ if is && visible }}
 						<a href="/channels/{{ linker }}/" class="jrouting jsearch channel-panel" data-id="{{ id }}" data-search="{{ name }}">@{if user.sa }<span class="operation" data-name="channel"><i class="fa fa-pencil"></i></span>@{fi}<i class="fa fa-hashtag"></i>{{ name }}</a>
 						{{ fi }}
 					</script>
 				</nav>
+        @{ fi }
 
 				<div class="caption jsearch" data-search=""><div class="operation" data-name="users"><i class="fa fa-plus-square-o"></i></div>@(Direct messages)</div>
 				<nav data-jc="repeater" data-jc-path="current.recent" class="nav-users">
