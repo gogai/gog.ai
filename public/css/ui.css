@@ -206,8 +206,8 @@ label span { vertical-align: middle; }
 
 .channel-panel {
   font-size: 16px;
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
   margin: 5px 10px 5px 10px;
   border-style: solid;
   border-color: white;
